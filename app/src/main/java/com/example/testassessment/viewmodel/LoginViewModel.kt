@@ -13,23 +13,24 @@ class LoginViewModel(private val repository: LoginRepository = LoginRepository()
     private val _uiState = MutableLiveData<LoginUiState>(LoginUiState.Initial)
     val uiState: LiveData<LoginUiState> = _uiState
 
-    fun onEmailChanged(email: String) {
-        _uiState.value = LoginUiState.EmailChanged(email)
+    fun onUserChanged(user: String) {
+        _uiState.value = LoginUiState.UserChanged(user)
     }
+
 
     fun onPasswordChanged(password: String) {
         _uiState.value = LoginUiState.PasswordChanged(password)
     }
 
-    fun login(email: String, password: String) {
+    fun login(user: String, password: String) {
         viewModelScope.launch {
             _uiState.value = LoginUiState.Loading
-            val credentials = UserCredentials(email, password)
+            val credentials = UserCredentials(user, password)
             val success = repository.authenticate(credentials)
             if (success) {
                 _uiState.value = LoginUiState.Success
             } else {
-                _uiState.value = LoginUiState.Error("Invalid email or password")
+                _uiState.value = LoginUiState.Error("Invalid username or password")
             }
         }
     }
@@ -40,6 +41,6 @@ sealed class LoginUiState {
     object Loading : LoginUiState()
     object Success : LoginUiState()
     data class Error(val message: String) : LoginUiState()
-    data class EmailChanged(val email: String) : LoginUiState()
+    data class UserChanged(val user: String) : LoginUiState()
     data class PasswordChanged(val password: String) : LoginUiState()
 }
