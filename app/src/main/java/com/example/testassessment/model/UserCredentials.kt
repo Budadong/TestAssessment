@@ -1,3 +1,3 @@
 package com.example.testassessment.model
 
-data class UserCredentials(val email: String, val password: String)
+data class UserCredentials(val user: String, val password: String)

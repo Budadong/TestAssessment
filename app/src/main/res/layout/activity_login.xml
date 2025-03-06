@@ -27,12 +27,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/userEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:hint="Username"
+            android:inputType="text"
             android:onTextChanged="@{(text, start, before, count) -> viewModel.onEmailChanged(text.toString())}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,14 +48,14 @@
             android:onTextChanged="@{(text, start, before, count) -> viewModel.onPasswordChanged(text.toString())}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailEditText" />
+            app:layout_constraintTop_toBottomOf="@id/userEditText" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:onClick="@{() -> viewModel.login(emailEditText.getText().toString(), passwordEditText.getText().toString())}"
+            android:onClick="@{() -> viewModel.login(userEditText.getText().toString(), passwordEditText.getText().toString())}"
             android:text="Login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
