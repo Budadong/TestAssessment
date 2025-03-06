@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TestAssessment</string>
+    <string name="api_data_placeholder">API Data Will Appear Here</string>
+</resources>
